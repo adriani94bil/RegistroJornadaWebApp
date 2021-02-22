@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./WEB-INF/view/plantilla.xhtml">
+
+            <ui:define name="content">
+                <div class="container-fluid" style="margin-bottom: 10px">
+                    <h4>Login</h4>
+                    <h:form id="formLogin">
+                        <div class="input-group col-4">
+                            <span class="input-group-text" id="mail-icon">
+                                <img src="https://www.flaticon.es/svg/vstatic/svg/2258/2258541.svg?token=exp=1611738521~hmac=e5395df4aa7fc8b53615d3c8b30fda23" width="15" height="22,5"></img>
+                            </span>
+                            <h:inputText  class="form-control" value="#{loginMB.email}" required="true" requiredMessage="Obligatorio" id="nombre">
+                            </h:inputText>
+                        </div>
+                        <h:message for="nombre" />
+                        <div class="input-group col-4">
+                            <span class="input-group-text" id="lock-icon">
+                                <img src="https://www.flaticon.com/svg/vstatic/svg/483/483408.svg?token=exp=1611738874~hmac=4e22c81c1ca5e3acfbef51413ea95670" width="15" height="22,5"></img>
+                            </span>
+                            <h:inputSecret class="form-control" value="#{loginMB.password}" required="true" requiredMessage="Obligatorio" id="pwd">
+                                <f:validateLength minimum="1"/>
+                            </h:inputSecret>
+                        </div>
+                        <h:message for="pwd"/>
+                        <br/>
+                        <h:commandButton class="btn btn-secondary" action="#{loginMB.login()}" value="Login"/>
+                        <h:commandButton class="btn btn-secondary" action="login" 
+                                         value="Cancelar"
+                                         immediate="true"/>
+                        <br/>
+                    </h:form>
+                </div>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
