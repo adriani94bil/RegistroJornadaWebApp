@@ -1,14 +1,27 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
 
     <body>
 
         <ui:composition template="./WEB-INF/view/plantilla.xhtml">
 
             <ui:define name="content">
-                content
+                <div class="container-fluid">
+                    <div class="row justify-content-center">
+                        <div class="col-3">
+                            <h4>Horario hoy</h4>
+                            <h:form id="formAltaTarea">
+                                
+                                <br/>
+                                <h:commandButton value="Guardar" id="alta" action="#{gestionTareasMB.altaTarea()}" />
+                            </h:form>
+                        </div>
+                    </div>
+                    
+                </div>
             </ui:define>
 
         </ui:composition>

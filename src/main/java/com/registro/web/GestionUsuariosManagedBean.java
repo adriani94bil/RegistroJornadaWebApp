@@ -96,7 +96,7 @@ public class GestionUsuariosManagedBean {
     public String buscarUsuarioPorEmailEntrada(){
         return buscarPorMail(this.emailABuscar);
     }
-    public String borrar(int id){
+    public void borrar(int id){
         try {
             this.usuarioService.borrar(id);
             this.coleccionUsuarios=usuarioService.getAllUsuarios();
@@ -104,7 +104,7 @@ public class GestionUsuariosManagedBean {
             FacesContext fc= FacesContext.getCurrentInstance();
             fc.addMessage(null, new FacesMessage("No se pudo borrar"+ex.getMessage()) );
         }
-        return "listaEmpleados";
+        ;
     }
     public  String update(){
         try {

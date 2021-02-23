@@ -12,10 +12,6 @@ import com.registro.excepciones.UsuarioUpdateException;
 import java.util.Collection;
 import javax.ejb.Local;
 
-/**
- *
- * @author user
- */
 @Local
 public interface UsuarioServiceLocal {
     public Usuario getUsuario(int id) throws UsuarioNotFoundException;

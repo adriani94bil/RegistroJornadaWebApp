@@ -61,8 +61,9 @@ public class UsuarioService implements UsuarioServiceLocal {
 
     @Override
     public void borrar(int id) throws UsuarioNotFoundException {
-        Usuario u=this.getUsuario(id);
-        em.remove(u);
+        Usuario user= this.getUsuario(id);
+        user.setActivo(false);
+        em.merge(user);
     }
 
     @Override
