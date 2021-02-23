@@ -6,6 +6,7 @@
 package com.registro.servicios;
 
 import com.registro.entidades.Usuario;
+import com.registro.excepciones.UsuarioCreateException;
 import com.registro.excepciones.UsuarioNotFoundException;
 import com.registro.excepciones.UsuarioUpdateException;
 import java.util.Collection;
@@ -18,7 +19,7 @@ import javax.ejb.Local;
 @Local
 public interface UsuarioServiceLocal {
     public Usuario getUsuario(int id) throws UsuarioNotFoundException;
-    public void alta(Usuario usrNuevo);
+    public void alta(Usuario usrNuevo) throws UsuarioCreateException;
     public Collection<Usuario> getAllUsuarios();
     public Usuario getUsuarioByEmail(String email) throws UsuarioNotFoundException;
     public void borrar(int id) throws UsuarioNotFoundException;

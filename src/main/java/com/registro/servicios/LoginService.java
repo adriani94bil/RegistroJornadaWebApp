@@ -22,7 +22,7 @@ import javax.servlet.http.HttpSession;
 @Stateless
 public class LoginService {
 
-    @PersistenceContext(unitName="ResgistroPU")
+    @PersistenceContext(unitName="RegistroPU")
     private EntityManager em;
     
     public LoginService() {

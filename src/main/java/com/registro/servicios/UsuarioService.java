@@ -6,6 +6,7 @@
 package com.registro.servicios;
 
 import com.registro.entidades.Usuario;
+import com.registro.excepciones.UsuarioCreateException;
 import com.registro.excepciones.UsuarioNotFoundException;
 import com.registro.excepciones.UsuarioUpdateException;
 import java.util.Collection;
@@ -21,7 +22,7 @@ import javax.persistence.Query;
 @Stateless
 public class UsuarioService implements UsuarioServiceLocal {
     
-    @PersistenceContext(unitName="ResgistroPU")
+    @PersistenceContext(unitName="RegistroPU")
     private EntityManager em;
     
     @Override
@@ -34,8 +35,8 @@ public class UsuarioService implements UsuarioServiceLocal {
     }
 
     @Override
-    public void alta(Usuario usrNuevo) {
-        em.persist(usrNuevo);
+    public void alta(Usuario usrNuevo) throws UsuarioCreateException{
+            em.persist(usrNuevo);
     }
 
     @Override

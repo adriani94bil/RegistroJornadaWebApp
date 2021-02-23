@@ -31,7 +31,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "USUARIO")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u"),
+    @NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u WHERE u.activo=true"),
     @NamedQuery(name = "Usuario.findByIdUsuario", query = "SELECT u FROM Usuario u WHERE u.idUsuario = :idUsuario"),
     @NamedQuery(name = "Usuario.findByNombre", query = "SELECT u FROM Usuario u WHERE u.nombre = :nombre"),
     @NamedQuery(name = "Usuario.findByApellidos", query = "SELECT u FROM Usuario u WHERE u.apellidos = :apellidos"),
@@ -41,8 +41,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Usuario.findByAdministrador", query = "SELECT u FROM Usuario u WHERE u.administrador = :administrador")})
 public class Usuario implements Serializable {
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
-    private Collection<Horario> horarioCollection;
+//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
+//    private Collection<Horario> horarioCollection;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -85,13 +85,13 @@ public class Usuario implements Serializable {
         this.idUsuario = idUsuario;
     }
 
-    public Usuario(Integer idUsuario, String nombre, String email, String password, Boolean activo, Boolean administrador) {
+    public Usuario(Integer idUsuario, String nombre, String email, String password) {
         this.idUsuario = idUsuario;
         this.nombre = nombre;
         this.email = email;
         this.password = password;
-        this.activo = activo;
-        this.administrador = administrador;
+        this.activo = true;
+        this.administrador = false;
     }
 
     public Integer getIdUsuario() {
@@ -175,13 +175,13 @@ public class Usuario implements Serializable {
         return "com.registro.entidades.Usuario[ idUsuario=" + idUsuario + " ]";
     }
 
-    @XmlTransient
-    public Collection<Horario> getHorarioCollection() {
-        return horarioCollection;
-    }
-
-    public void setHorarioCollection(Collection<Horario> horarioCollection) {
-        this.horarioCollection = horarioCollection;
-    }
+//    @XmlTransient
+//    public Collection<Horario> getHorarioCollection() {
+//        return horarioCollection;
+//    }
+//
+//    public void setHorarioCollection(Collection<Horario> horarioCollection) {
+//        this.horarioCollection = horarioCollection;
+//    }
     
 }

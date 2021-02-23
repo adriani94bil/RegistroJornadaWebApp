@@ -12,7 +12,7 @@
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                 <div class="container-fluid">
                   <a class="navbar-brand" href="#">
-                    <img src="https://www.flaticon.com/svg/vstatic/svg/3596/3596029.svg?token=exp=1613991090~hmac=33b6f90328383f57d8ac652f8296a869" alt="" width="45" height="36" class="d-inline-block align-top"/>
+                      <img src="https://www.flaticon.es/svg/static/icons/svg/1721/1721929.svg" alt="logo" width="45" height="40" class="d-inline-block align-top"/>
                     #{textos.title}
                   </a>
                   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -25,7 +25,7 @@
                                 <h:link class="nav-link" outcome="registroJornada">#{textos.registerHours}</h:link>
                             </li>
                             <li class="nav-item">
-                                <h:link class="nav-link" outcome="registroEmpleado">#{textos.registerUser}</h:link>
+                                <h:link class="nav-link" rendered="#{loginMB.usuarioLog.administrador==true}" outcome="registroEmpleado">#{textos.registerUser}</h:link>
                             </li>
                             <li class="nav-item">
                                 <h:link class="nav-link" rendered="#{loginMB.usuarioLog.administrador==true}" outcome="listaEmpleados">Admin usuarios</h:link>

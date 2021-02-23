@@ -1,14 +1,36 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <body>
 
         <ui:composition template="./WEB-INF/view/plantilla.xhtml">
 
             <ui:define name="content">
-                content
+                <h2>Lista usuarios</h2>
+                <h:form>
+                    <h:dataTable var="usuario" value="#{gestionUsuariosMB.coleccionUsuarios}">
+                        <h:column>
+                            <f:facet name="header">Id </f:facet>
+                            #{usuario.idUsuario}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Email </f:facet>
+                            #{usuario.email}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Nombre Usuario</f:facet>
+                            #{usuario.nombre}
+                        </h:column>
+                        <h:column>
+                            <h:commandButton value="Ver detalle" action="#{gestionUsuariosMB.buscarUsuario(usuario.email)}" />
+                            <h:commandButton value="Update" action="updateUsuario?faces-redirect=true" />
+                        </h:column>
+                    </h:dataTable>
+                </h:form>
             </ui:define>
 
         </ui:composition>

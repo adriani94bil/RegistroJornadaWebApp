@@ -5,11 +5,15 @@
  */
 package com.registro.web;
 
+import com.registro.entidades.Horario;
 import com.registro.entidades.Usuario;
+import com.registro.excepciones.UsuarioCreateException;
 import com.registro.excepciones.UsuarioNotFoundException;
 import com.registro.excepciones.UsuarioUpdateException;
 import com.registro.servicios.UsuarioServiceLocal;
 import java.util.Collection;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
@@ -28,8 +32,10 @@ public class GestionUsuariosManagedBean {
     //lista con todos los usuarios
     
     private Collection<Usuario> coleccionUsuarios;
+    private Collection<Horario> coleccionHorarios;
     private Usuario usuarioEncontrado;
     private Usuario usuarioAModificar;
+    private Usuario usuarioRegister ;
     
     private String emailABuscar;
     
@@ -45,6 +51,7 @@ public class GestionUsuariosManagedBean {
         this.coleccionUsuarios=usuarioService.getAllUsuarios();
         this.usuarioAModificar=new Usuario();
         this.usuarioEncontrado=new Usuario();
+        this.usuarioRegister=new Usuario();
     }
     
     
@@ -71,6 +78,16 @@ public class GestionUsuariosManagedBean {
     public void setEmailABuscar(String emailABuscar) {
         this.emailABuscar = emailABuscar;
     }
+
+    public Usuario getUsuarioRegister() {
+        return usuarioRegister;
+    }
+
+    public void setUsuarioRegister(Usuario usuarioRegister) {
+        this.usuarioRegister = usuarioRegister;
+    }
+    
+    
     
     // acciones
     public String buscarUsuario(String email){
@@ -110,6 +127,20 @@ public class GestionUsuariosManagedBean {
             fc.addMessage(null, new FacesMessage(ex.getMessage()) );
             return null;
         }
+    }
+    
+    //Alta
+    
+    public String altaUsuario(){
+        try {
+            this.usuarioRegister.setActivo(true);
+            this.usuarioRegister.setAdministrador(false);
+            usuarioService.alta(usuarioRegister);
+        } catch (UsuarioCreateException ex) {
+            Logger.getLogger(GestionUsuariosManagedBean.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Error al cargar");
+        }
+            return "listaEmpleados?faces-redirect=true";
     }
     
 }
