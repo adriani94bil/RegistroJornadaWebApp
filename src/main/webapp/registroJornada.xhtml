@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <body>
 
@@ -11,17 +12,46 @@
             <ui:define name="content">
                 <div class="container-fluid">
                     <div class="row justify-content-center">
-                        <div class="col-3">
+                        <div class="col-4">
                             <h4>Horario hoy</h4>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="col-4" style="margin-left: 30px;">
+                            <img src="resources/image/gauge.png" width="72" height="82"></img>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="col-5">
                             <h:form id="formAltaHora">
-                                
                                 <br/>
                                 <h:commandButton class="" value="Iniciar Jornada" id="Iniciar" action="#{gestionHorariosMB.altaHorario()}" />
-                                <h:commandButton class="" value="Acabar jornada" id="alta" action="#{gestionHorariosMB.altaHorario()}" />
+                                <h:commandButton class="" value="Acabar jornada" id="alta" action="#{gestionHorariosMB.updateHorario()}" />
                             </h:form>
                         </div>
                     </div>
-                    
+                </div>
+                <div class="container-fluid" >
+                    <h:form>
+                        <h:dataTable var="jornada" value="#{gestionHorariosMB.allHorario}">
+                            <h:column>
+                                <f:facet name="header">Id </f:facet>
+                                #{jornada.idHorario}
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Fecha </f:facet>
+                                #{jornada.fecha}
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Entrada</f:facet>
+                                #{jornada.horaEntrada}
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Salida</f:facet>
+                                #{jornada.horaSalida}
+                            </h:column>
+                        </h:dataTable>
+                    </h:form>
                 </div>
             </ui:define>
 

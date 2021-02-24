@@ -32,7 +32,6 @@ public class GestionUsuariosManagedBean {
     //lista con todos los usuarios
     
     private Collection<Usuario> coleccionUsuarios;
-    private Collection<Horario> coleccionHorarios;
     private Usuario usuarioEncontrado;
     private Usuario usuarioAModificar;
     private Usuario usuarioRegister ;

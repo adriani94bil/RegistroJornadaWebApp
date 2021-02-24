@@ -8,7 +8,10 @@ package com.registro.web;
 import com.registro.entidades.Horario;
 import com.registro.entidades.Usuario;
 import com.registro.excepciones.HorarioCreateException;
+import com.registro.excepciones.HorarioNotFoundException;
+import com.registro.excepciones.HorarioUpdateException;
 import com.registro.servicios.HorarioServiceLocal;
+import java.util.Collection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
@@ -34,6 +37,7 @@ public class GestionHorariosMB {
     
     private Horario horarioRegistro;
     private Horario horarioModificar;
+    private Collection<Horario> allHorario;
     
     public GestionHorariosMB() {
         
@@ -44,6 +48,7 @@ public class GestionHorariosMB {
         this.usuarioLog=loginMB.getUsuarioLog();
         this.horarioRegistro=new Horario();
         this.horarioModificar=new Horario();
+        this.allHorario=horarioService.getAllHorasPorEmpleado(this.usuarioLog.getIdUsuario());
     }
 
     public Horario getHorarioRegistro() {
@@ -61,21 +66,35 @@ public class GestionHorariosMB {
     public void setHorarioModificar(Horario horarioModificar) {
         this.horarioModificar = horarioModificar;
     }
+
+    public Collection<Horario> getAllHorario() {
+        return allHorario;
+    }
+
+    public void setAllHorario(Collection<Horario> allHorario) {
+        this.allHorario = allHorario;
+    }
     
     
     //acciones
     
     public void altaHorario(){
         try {
-            this.horarioRegistro.setUsuario(usuarioLog);
-            horarioService.iniciarHora(horarioRegistro.getIdHorario());
+            horarioService.iniciarHora(usuarioLog.getIdUsuario());
+            inicializar();
         } catch (HorarioCreateException ex) {
             Logger.getLogger(GestionHorariosMB.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     public void updateHorario(){
-        
+        try {
+            horarioService.modificarHorario(usuarioLog.getIdUsuario());
+            inicializar();
+        } catch (HorarioNotFoundException | HorarioUpdateException ex) {
+            Logger.getLogger(GestionHorariosMB.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
+    
                 
     
 }

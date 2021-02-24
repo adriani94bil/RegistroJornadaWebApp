@@ -37,7 +37,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Horario.findByHoraEntrada", query = "SELECT h FROM Horario h WHERE h.horaEntrada = :horaEntrada"),
     @NamedQuery(name = "Horario.findByIdEmpleado", query = "SELECT h FROM Horario h WHERE h.idUsuario = :idUsuario"),
     @NamedQuery(name = "Horario.findByJornadasNoFinalizadasPorEmpleado", 
-            query = "SELECT h FROM Horario h WHERE h.idUsuario = :idUsuario AND h.fecha = :fecha AND h.horaSalida IS NULL")
+            query = "SELECT h FROM Horario h WHERE h.idUsuario = :idUsuario AND h.fecha = :fecha AND h.horaSalida IS NULL"),
+    @NamedQuery(name = "Horario.findByJornadaNoFinalizada", 
+            query = "SELECT h FROM Horario h WHERE h.idUsuario = :idUsuario AND h.horaSalida IS NULL")
 })
 public class Horario implements Serializable {
 

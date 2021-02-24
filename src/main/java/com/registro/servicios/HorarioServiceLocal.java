@@ -14,6 +14,6 @@ import javax.ejb.Local;
 public interface HorarioServiceLocal {
     public Horario getHorario(int id) throws HorarioNotFoundException;
     public void iniciarHora(Integer idEmpleado) throws HorarioCreateException;
-    public void modificarHorario(Horario horario) throws HorarioNotFoundException, HorarioUpdateException;
-    public Collection<Horario> getAllHorasPorEmpleado(Integer idEmpleado);
+    public void modificarHorario(Integer idHorario) throws HorarioNotFoundException, HorarioUpdateException;
+    public Collection<Horario> getAllHorasPorEmpleado(Integer idEmpleado) ;
 }

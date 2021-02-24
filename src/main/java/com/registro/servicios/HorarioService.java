@@ -9,7 +9,6 @@ import com.registro.entidades.Horario;
 import com.registro.excepciones.HorarioCreateException;
 import com.registro.excepciones.HorarioNotFoundException;
 import com.registro.excepciones.HorarioUpdateException;
-import java.time.LocalDate;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
@@ -69,9 +68,16 @@ public class HorarioService implements HorarioServiceLocal{
     }
 
     @Override
-    public void modificarHorario(Horario horario) throws HorarioNotFoundException, HorarioUpdateException {
-        Horario horarioMB=this.getHorario(horario.getIdHorario());
-        em.merge(horario);
+    public void modificarHorario(Integer idUsuario) throws HorarioNotFoundException, HorarioUpdateException {
+        Query query=em.createNamedQuery("Horario.findByJornadaNoFinalizada");
+        query.setParameter("idUsuario", idUsuario);
+        Date hoyFin=new Date();
+        List<Horario> resultado= query.getResultList();
+        if (resultado.size()==0) {
+            throw new HorarioNotFoundException("No hay jornadas iniciadas");
+        }
+        Horario horarioMB=resultado.get(resultado.size()-1);
+        horarioMB.setHoraSalida(hoyFin);
     }
 
     @Override
