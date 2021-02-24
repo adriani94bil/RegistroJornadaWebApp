@@ -5,7 +5,9 @@
  */
 package com.registro.excepciones;
 
+import javax.ejb.ApplicationException;
 
+@ApplicationException(rollback = true)
 public class HorarioCreateException extends Exception{
 
     public HorarioCreateException(String string) {

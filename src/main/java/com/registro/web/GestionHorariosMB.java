@@ -67,8 +67,8 @@ public class GestionHorariosMB {
     
     public void altaHorario(){
         try {
-            this.horarioRegistro.setIdUsuario(usuarioLog);
-            horarioService.altaHora(horarioRegistro);
+            this.horarioRegistro.setUsuario(usuarioLog);
+            horarioService.iniciarHora(horarioRegistro.getIdHorario());
         } catch (HorarioCreateException ex) {
             Logger.getLogger(GestionHorariosMB.class.getName()).log(Level.SEVERE, null, ex);
         }

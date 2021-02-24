@@ -13,10 +13,11 @@
                     <div class="row justify-content-center">
                         <div class="col-3">
                             <h4>Horario hoy</h4>
-                            <h:form id="formAltaTarea">
+                            <h:form id="formAltaHora">
                                 
                                 <br/>
-                                <h:commandButton value="Guardar" id="alta" action="#{gestionTareasMB.altaTarea()}" />
+                                <h:commandButton class="" value="Iniciar Jornada" id="Iniciar" action="#{gestionHorariosMB.altaHorario()}" />
+                                <h:commandButton class="" value="Acabar jornada" id="alta" action="#{gestionHorariosMB.altaHorario()}" />
                             </h:form>
                         </div>
                     </div>

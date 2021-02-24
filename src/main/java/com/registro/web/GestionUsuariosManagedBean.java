@@ -100,6 +100,7 @@ public class GestionUsuariosManagedBean {
         try {
             this.usuarioService.borrar(id);
             this.coleccionUsuarios=usuarioService.getAllUsuarios();
+            this.inicializar();
         } catch (UsuarioNotFoundException ex) {
             FacesContext fc= FacesContext.getCurrentInstance();
             fc.addMessage(null, new FacesMessage("No se pudo borrar"+ex.getMessage()) );

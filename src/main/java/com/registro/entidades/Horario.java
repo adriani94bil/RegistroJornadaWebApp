@@ -35,7 +35,10 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Horario.findByIdHorario", query = "SELECT h FROM Horario h WHERE h.idHorario = :idHorario"),
     @NamedQuery(name = "Horario.findByFecha", query = "SELECT h FROM Horario h WHERE h.fecha = :fecha"),
     @NamedQuery(name = "Horario.findByHoraEntrada", query = "SELECT h FROM Horario h WHERE h.horaEntrada = :horaEntrada"),
-    @NamedQuery(name = "Horario.findByHoraSalida", query = "SELECT h FROM Horario h WHERE h.horaSalida = :horaSalida")})
+    @NamedQuery(name = "Horario.findByIdEmpleado", query = "SELECT h FROM Horario h WHERE h.idUsuario = :idUsuario"),
+    @NamedQuery(name = "Horario.findByJornadasNoFinalizadasPorEmpleado", 
+            query = "SELECT h FROM Horario h WHERE h.idUsuario = :idUsuario AND h.fecha = :fecha AND h.horaSalida IS NULL")
+})
 public class Horario implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -57,7 +60,13 @@ public class Horario implements Serializable {
     @Column(name = "HORA_SALIDA")
     @Temporal(TemporalType.TIME)
     private Date horaSalida;
-    @JoinColumn(name = "ID_USUARIO", referencedColumnName = "ID_USUARIO")
+    
+    @Column(name="ID_USUARIO")
+    private Integer idUsuario;
+    
+    @JoinColumn(name = "ID_USUARIO", referencedColumnName = "ID_USUARIO",
+            insertable = false, updatable=false
+    )
     @ManyToOne(optional = false)
     private Usuario usuario;
 
@@ -106,14 +115,22 @@ public class Horario implements Serializable {
         this.horaSalida = horaSalida;
     }
 
-    public Usuario getIdUsuario() {
+    public Usuario getUsuario() {
         return usuario;
     }
 
-    public void setIdUsuario(Usuario idUsuario) {
+    public void setUsuario(Usuario idUsuario) {
         this.usuario = idUsuario;
     }
 
+    public Integer getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(Integer idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 0;

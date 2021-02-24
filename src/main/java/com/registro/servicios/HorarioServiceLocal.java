@@ -7,11 +7,13 @@ package com.registro.servicios;
 
 import com.registro.entidades.Horario;
 import com.registro.excepciones.*;
+import java.util.Collection;
 import javax.ejb.Local;
 
 @Local
 public interface HorarioServiceLocal {
     public Horario getHorario(int id) throws HorarioNotFoundException;
-    public void altaHora(Horario horario) throws HorarioCreateException;
+    public void iniciarHora(Integer idEmpleado) throws HorarioCreateException;
     public void modificarHorario(Horario horario) throws HorarioNotFoundException, HorarioUpdateException;
+    public Collection<Horario> getAllHorasPorEmpleado(Integer idEmpleado);
 }

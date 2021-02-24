@@ -5,10 +5,9 @@
  */
 package com.registro.excepciones;
 
-/**
- *
- * @author user
- */
+import javax.ejb.ApplicationException;
+
+@ApplicationException(rollback = true)
 public class HorarioUpdateException extends Exception{
 
     public HorarioUpdateException(String string) {
