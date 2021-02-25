@@ -11,10 +11,10 @@
 
             <ui:define name="content">
                 <h2>Lista usuarios</h2>
-                <h:form>
+                <h:form id="formTablaControl">
                     <h:dataTable var="usuario" value="#{gestionUsuariosMB.coleccionUsuarios}">
                         <h:column>
-                            <f:facet name="header">Id </f:facet>
+                            <f:facet name="header" >Id </f:facet>
                             #{usuario.idUsuario}
                         </h:column>
                         <h:column>
@@ -28,7 +28,9 @@
                         <h:column>
                             <h:commandButton value="Ver detalle" action="#{gestionUsuariosMB.buscarUsuario(usuario.email)}" />
                             <h:commandButton value="Borrar" action="#{gestionUsuariosMB.borrar(usuario.idUsuario)}" />                      
-                            
+                            <h:commandButton value="Actualizar" action="updateUsuario?faces-redirect=true">
+                                <f:param name="usuario" value="#{usuario}"/>
+                            </h:commandButton>                    
                         </h:column>
                     </h:dataTable>
                 </h:form>

@@ -10,36 +10,53 @@
         <ui:composition template="./WEB-INF/view/plantilla.xhtml">
 
             <ui:define name="content">
-                <h2>Datos del Usuario</h2>
-                <h:form id="formUpdateUser">
+                <f:metadata>
+                    <f:viewParam id="usuario" name="usuario" value="#{usuario}" />
+                </f:metadata>
+                <h2> Usuario a modificar</h2>
+                <h:form id="formUpdate">
+                    <div>
+                        Id:
+                        <h:inputText value="#{gestionUsuariosMB.usuarioAModificar.idUsuario}"  required="true" requiredMessage="Obligatorio" id="idUsuario">
+                            <f:passThroughAttribute name="placeholder" value="#{usuario.idUsuario}"/>
+                        </h:inputText>
+                    </div>
                     <div>
                         Nombre:
-                        <h:inputText value="#{gestionUsuariosMB.usuarioAModificar.nombre}" required="true" requiredMessage="Obligatorio" id="nombre">
+                        <h:inputText value="#{gestionUsuariosMB.usuarioAModificar.nombre}"  required="true" requiredMessage="Obligatorio" id="nombre">
+                            <f:passThroughAttribute name="placeholder" value="#{usuario.nombre}"/>
                         </h:inputText>
                     </div>
                     <div>
                         Apellido:
-                        <h:inputText value="#{gestionUsuariosMB.usuarioAModificar.apellidos}" required="true" requiredMessage="Obligatorio" id="nombre">
+                        <h:inputText value="#{gestionUsuariosMB.usuarioAModificar.apellidos}"  required="true" requiredMessage="Obligatorio" id="apellido">
+                            <f:passThroughAttribute name="placeholder" value="#{usuario.apellidos}"/>
                         </h:inputText>
                     </div>
                     <div>
                         Email
                         <h:inputText value="#{gestionUsuariosMB.usuarioAModificar.email}" required="true" requiredMessage="Obligatorio" id="email">
+                            <f:passThroughAttribute name="placeholder" value="#{usuario.email}"/>
                         </h:inputText>
                     </div>
                     <div>
                         Clave
                         <h:inputSecret value="#{gestionUsuariosMB.usuarioAModificar.password}" required="true" requiredMessage="Obligatorio" id="pwd">
+                            <f:passThroughAttribute name="placeholder" value="#{usuario.password}"/>
                             <f:validateLength minimum="1"/>
                         </h:inputSecret>
                     </div>
                     <div>
                         Activo
-                        <h:selectBooleanCheckbox value="#{gestionUsuariosMB.usuarioAModificar.activo}" />
+                        <h:selectBooleanCheckbox value="#{gestionUsuariosMB.usuarioAModificar.activo}" id="activo" >
+                            <f:passThroughAttribute name="placeholder" value="#{usuario.activo}"/>
+                        </h:selectBooleanCheckbox>
                     </div>
                     <div>
                         Admin
-                        <h:selectBooleanCheckbox value="#{gestionUsuariosMB.usuarioAModificar.administrador}" />
+                        <h:selectBooleanCheckbox value="#{gestionUsuariosMB.usuarioAModificar.administrador}" id="admin">
+                            <f:passThroughAttribute name="placeholder" value="#{usuario.administrador}"/>
+                        </h:selectBooleanCheckbox>
                     </div>
                     <h:commandButton  class="btn btn-secondary" value="Update" action="#{gestionUsuariosMB.update()}" />
                     <h:commandButton class="btn btn-secondary" value="Cancelar" action="listaEmpleados" immediate="true" />

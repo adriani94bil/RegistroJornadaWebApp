@@ -6,11 +6,14 @@
 package com.registro.webservices;
 
 import com.registro.entidades.Horario;
+import com.registro.entidades.Usuario;
 import com.registro.excepciones.HorarioCreateException;
 import com.registro.excepciones.HorarioNotFoundException;
 import com.registro.excepciones.HorarioUpdateException;
 import com.registro.servicios.HorarioServiceLocal;
+import com.registro.servicios.LoginService;
 import java.util.List;
+import java.util.Map;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ws.rs.GET;
@@ -25,6 +28,8 @@ import javax.ws.rs.core.MediaType;
 public class RegistroJornadasRestFullWS {
     
     @EJB
+    private LoginService servicioLogin;
+    @EJB
     private HorarioServiceLocal servicio;
     
 
@@ -34,9 +39,7 @@ public class RegistroJornadasRestFullWS {
     public List<Horario> find(@PathParam("idUsuario") Integer id) {
         List<Horario> lista=(List<Horario>) servicio.getAllHorasPorEmpleado(id);
         return lista;
-    }
-    
-    //OJO ME APLICA LOS DOS METODOS GET A LA VEZ
+    } 
     
     @GET()
     @Path("iniciarJornada/usuario/{idUsuario}")

@@ -32,6 +32,7 @@ public class LoginManagedBean implements Serializable {
     private String password;
     private Usuario usuarioLog;
     
+    
     @EJB
     private LoginService loginService;
     

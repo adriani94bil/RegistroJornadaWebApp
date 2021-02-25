@@ -106,7 +106,7 @@ public class GestionUsuariosManagedBean {
         }
         ;
     }
-    public  String update(){
+    public  String update( ){
         try {
             this.usuarioService.modificar(usuarioAModificar);
             this.coleccionUsuarios=usuarioService.getAllUsuarios();
@@ -142,5 +142,6 @@ public class GestionUsuariosManagedBean {
         }
             return "listaEmpleados?faces-redirect=true";
     }
+    
     
 }
