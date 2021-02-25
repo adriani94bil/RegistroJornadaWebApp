@@ -10,10 +10,11 @@ import com.registro.entidades.Usuario;
 import com.registro.excepciones.HorarioCreateException;
 import com.registro.excepciones.HorarioNotFoundException;
 import com.registro.excepciones.HorarioUpdateException;
+import com.registro.excepciones.UsuarioNotFoundException;
 import com.registro.servicios.HorarioServiceLocal;
 import com.registro.servicios.LoginService;
+import com.registro.servicios.UsuarioServiceLocal;
 import java.util.List;
-import java.util.Map;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ws.rs.GET;
@@ -31,6 +32,8 @@ public class RegistroJornadasRestFullWS {
     private LoginService servicioLogin;
     @EJB
     private HorarioServiceLocal servicio;
+    @EJB
+    private UsuarioServiceLocal usuarioService;
     
 
     @GET
@@ -39,6 +42,14 @@ public class RegistroJornadasRestFullWS {
     public List<Horario> find(@PathParam("idUsuario") Integer id) {
         List<Horario> lista=(List<Horario>) servicio.getAllHorasPorEmpleado(id);
         return lista;
+    }
+    //Mando todos los datos a la aplicacion movil
+    @GET
+    @Path("usuarioMobile/{idUsuario}")
+    @Produces({ MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
+    public Usuario findUsuarioMobile(@PathParam("idUsuario") Integer id) throws UsuarioNotFoundException {
+        Usuario usuario= (Usuario) usuarioService.getUsuario(id);
+        return usuario;
     } 
     
     @GET()

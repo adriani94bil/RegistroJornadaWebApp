@@ -29,7 +29,7 @@
                             <h:commandButton value="Ver detalle" action="#{gestionUsuariosMB.buscarUsuario(usuario.email)}" />
                             <h:commandButton value="Borrar" action="#{gestionUsuariosMB.borrar(usuario.idUsuario)}" />                      
                             <h:commandButton value="Actualizar" action="updateUsuario?faces-redirect=true">
-                                <f:param name="usuario" value="#{usuario}"/>
+                                <f:param name="usuario" value="#{usuario.idUsuario}"/>
                             </h:commandButton>                    
                         </h:column>
                     </h:dataTable>
