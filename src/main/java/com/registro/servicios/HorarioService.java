@@ -72,11 +72,16 @@ public class HorarioService implements HorarioServiceLocal{
         Query query=em.createNamedQuery("Horario.findByJornadaNoFinalizada");
         query.setParameter("idUsuario", idUsuario);
         Date hoyFin=new Date();
-        List<Horario> resultado= query.getResultList();
-        if (resultado.size()==0) {
+        //List<Horario> resultado= query.getResultList();
+        Horario horarioMB= (Horario)query.getSingleResult();
+//        if (resultado.size()==0) {
+//            throw new HorarioNotFoundException("No hay jornadas iniciadas");
+//        }
+        if (horarioMB==null) {
             throw new HorarioNotFoundException("No hay jornadas iniciadas");
         }
-        Horario horarioMB=resultado.get(resultado.size()-1);
+
+//        Horario horarioMB=resultado.get(resultado.size()-1);
         horarioMB.setHoraSalida(hoyFin);
     }
 
