@@ -40,7 +40,7 @@ public class GestionHorariosMB {
     private Collection<Horario> allHorario;
     
     public GestionHorariosMB() {
-        
+        System.out.println("......instanciando GestionHorarioMB");
     }
     
     @PostConstruct

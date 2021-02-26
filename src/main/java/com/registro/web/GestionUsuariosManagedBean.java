@@ -42,7 +42,7 @@ public class GestionUsuariosManagedBean {
     private UsuarioServiceLocal usuarioService;
     
     public GestionUsuariosManagedBean() {
-        
+        System.out.println("......instanciando GestinUsuarioManagedBean");
     }
     
     @PostConstruct

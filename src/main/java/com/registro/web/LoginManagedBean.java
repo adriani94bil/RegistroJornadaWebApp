@@ -20,10 +20,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
-/**
- *
- * @author user
- */
+
 @Named(value = "loginMB")
 @SessionScoped
 public class LoginManagedBean implements Serializable {
@@ -41,7 +38,7 @@ public class LoginManagedBean implements Serializable {
     
     
     public LoginManagedBean() {
-        
+        System.out.println("......instanciando LoginManagedBean");
     }
     @PostConstruct
     public void iniciarLogin(){

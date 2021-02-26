@@ -9,10 +9,7 @@ import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 
-/**
- *
- * @author user
- */
+
 @Named(value = "idiomaMB")
 @SessionScoped
 public class IdiomaManagedBean implements Serializable {
@@ -24,6 +21,7 @@ public class IdiomaManagedBean implements Serializable {
         return idiomaUser;
     }
     public IdiomaManagedBean() {
+        System.out.println("......instanciando IdiomaManagedBean");
     }
     
     //Metodos

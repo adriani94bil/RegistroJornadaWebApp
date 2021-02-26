@@ -54,15 +54,41 @@ public class RegistroJornadasRestFullWS {
     
     @GET()
     @Path("iniciarJornada/usuario/{idUsuario}")
-    //@Produces({ MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
-    public void iniciarJornada(@PathParam("idUsuario") Integer id) throws HorarioCreateException{
-        servicio.iniciarHora(id);
+    @Produces({ MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
+    public Respuesta iniciarJornada(@PathParam("idUsuario") Integer id) throws UsuarioNotFoundException{
+        Respuesta respuesta=new Respuesta();
+        Usuario usuario= (Usuario) usuarioService.getUsuario(id);
+        Horario horario= (Horario) servicio.getLastHorario(id);
+        try{
+            servicio.iniciarHora(id);
+            respuesta.setSinErrores(true);
+            respuesta.setMensaje("Jornada Iniciada");
+            respuesta.setHorario(horario);
+            respuesta.setUsuario(usuario);
+        }catch(HorarioCreateException ex){
+            respuesta.setSinErrores(false);
+            respuesta.setMensaje(ex.getMessage());
+        }
+        return respuesta;
     }
     
     @GET()
     @Path("finalizarJornada/usuario/{idUsuario}")
-    //@Consumes({ MediaType.APPLICATION_JSON})
-    public void finalizarJornada(@PathParam("idUsuario") Integer id) throws HorarioNotFoundException, HorarioUpdateException {
-        servicio.modificarHorario(id);
+    @Produces({ MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
+    public Respuesta finalizarJornada(@PathParam("idUsuario") Integer id) throws UsuarioNotFoundException {
+        Respuesta respuesta=new Respuesta();
+        Usuario usuario= (Usuario) usuarioService.getUsuario(id);
+        Horario horario= (Horario) servicio.getLastHorario(id);
+        try {
+            servicio.modificarHorario(id);
+            respuesta.setSinErrores(true);
+            respuesta.setHorario(horario);
+            respuesta.setUsuario(usuario);
+            respuesta.setMensaje("Jornada Finalizada");
+        } catch (HorarioNotFoundException | HorarioUpdateException ex) {
+            respuesta.setSinErrores(false);
+            respuesta.setMensaje(ex.getMessage());
+        }
+        return respuesta;
     }
 }

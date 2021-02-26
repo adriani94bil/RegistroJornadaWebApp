@@ -92,5 +92,15 @@ public class HorarioService implements HorarioServiceLocal{
         return query.getResultList();
     }
     
+    //como el método de arriba pero devuelvo el ultimo valor
+    @Override
+    public Horario getLastHorario(Integer idUsuario) {
+        Query query=em.createNamedQuery("Horario.findByIdEmpleado");
+        query.setParameter("idUsuario", idUsuario);
+        List<Horario> lista=query.getResultList();
+        Horario horaUlt=lista.get(lista.size()-1);
+        return horaUlt;
+    }
+    
     
 }

@@ -16,4 +16,5 @@ public interface HorarioServiceLocal {
     public void iniciarHora(Integer idEmpleado) throws HorarioCreateException;
     public void modificarHorario(Integer idHorario) throws HorarioNotFoundException, HorarioUpdateException;
     public Collection<Horario> getAllHorasPorEmpleado(Integer idEmpleado) ;
+    public Horario getLastHorario(Integer idEmpleado) ;
 }
